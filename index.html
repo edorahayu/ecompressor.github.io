@@ -1,144 +1,144 @@
-!DOCTYPE html
-html
-head
-  meta charset=utf-8 
-  meta http-equiv=X-UA-Compatible content=IE=edge
-  titleText Compressiontitle
-  meta name=viewport content=width=device-width, initial-scale=1
-  link rel=icon href=httpdevoresyah.github.iofavicon.png
-  script src=httpscdn.jsdelivr.netnpmvuedistvue.jsscript
-  script src=httpsunpkg.comiview@3.1.5distiview.min.jsscript
-  script src=httpsrawcdn.githack.compieroxylz-string9513b1cdbb00ce029f545c2ed23f0fff4137fd8clibslz-string.min.jsscript
-  script src=httpscdn.jsdelivr.netgheligreyFileSaver.jssrcFileSaver.jsscript
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Text Compression</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="http://devoresyah.github.io/favicon.png">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/iview@3.1.5/dist/iview.min.js"></script>
+  <script src="https://rawcdn.githack.com/pieroxy/lz-string/9513b1cdbb00ce029f545c2ed23f0fff4137fd8c/libs/lz-string.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/eligrey/FileSaver.js/src/FileSaver.js"></script>
 
-  style
-    @import url(httpsunpkg.comiviewdiststylesiview.css);
+  <style>
+    @import url("https://unpkg.com/iview/dist/styles/iview.css");
     .layout{
-        background #f5f7f9;
+        background: #f5f7f9;
     }
     .layout-logo{
-        width 100px;
-        height 30px;
-        background #5b6270;
-        border-radius 3px;
-        float left;
-        position relative;
-        top 15px;
-        left 20px;
+        width: 100px;
+        height: 30px;
+        background: #5b6270;
+        border-radius: 3px;
+        float: left;
+        position: relative;
+        top: 15px;
+        left: 20px;
     }
     .layout-nav{
-        width auto;
-        float right;
+        width: auto;
+        float: right;
     }
     .layout-footer-center{
-        text-align center;
+        text-align: center;
     }
     code {
-        display inline-block;
-        background #f7f7f7;
-        font-family Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
-        margin 0 3px;
-        padding 1px 5px;
-        border-radius 3px;
-        color #666;
-        border 1px solid #eee;
+        display: inline-block;
+        background: #f7f7f7;
+        font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
+        margin: 0 3px;
+        padding: 1px 5px;
+        border-radius: 3px;
+        color: #666;
+        border: 1px solid #eee;
     }
-  style
-head
-body
+  </style>
+</head>
+<body>
 
-    div id=vueApp
-        div class=layout
-            layout
-                i-header
-                    i-menu mode=horizontal theme=dark active-name=1
-                        div class=layout-logodiv
-                        div class=layout-nav
-                            menu-item name=1
-                                icon type=ios-color-wandicon
+    <div id="vueApp">
+        <div class="layout">
+            <layout>
+                <i-header>
+                    <i-menu mode="horizontal" theme="dark" active-name="1">
+                        <div class="layout-logo"></div>
+                        <div class="layout-nav">
+                            <menu-item name="1">
+                                <icon type="ios-color-wand"></icon>
                                 Compress Text
-                            menu-item
-                        div
-                    i-menu
-                i-header
-                i-content style={padding '60px 50px'}
-                    breadcrumb style={margin '20px 0'}
-                        breadcrumb-itemHomebreadcrumb-item
-                        breadcrumb-itemCompression Toolsbreadcrumb-item
-                    breadcrumb
-                    card
-                        div style=min-height 200px;
-                            row gutter=10
-                                i-col span=12
-                                    i-form label-position=top
-                                        form-item label=Masukkan Teks
-                                            i-input id=filecontents
-                                                v-model=text
-                                                type=textarea
-                                                autosize={minRows 4}
-                                                placeholder=Masukkan teks yang ingin dikompres...
-                                            
-                                        form-item
-					i-col span=24
-   				 	upload action=httpsjsonplaceholder.typicode.composts ref=upload before-upload=readFile on-success=clearFiles
-        				i-button id=fileSave icon=ios-cloud-upload-outline longUpload filesbutton
-    					upload
-					i-col
-                                        code style=floatrightKarakter {{ text.length }}code
-                                    i-form
-                                i-col
-                                i-col span=12
-                                    i-form label-position=top
-                                            form-item label=Hasil
-                                                i-input
+                            </menu-item>
+                        </div>
+                    </i-menu>
+                </i-header>
+                <i-content :style="{padding: '60px 50px'}">
+                    <breadcrumb :style="{margin: '20px 0'}">
+                        <breadcrumb-item>Home</breadcrumb-item>
+                        <breadcrumb-item>Compression Tools</breadcrumb-item>
+                    </breadcrumb>
+                    <card>
+                        <div style="min-height: 200px;">
+                            <row :gutter="10">
+                                <i-col span="12">
+                                    <i-form label-position="top">
+                                        <form-item label="Masukkan Teks">
+                                            <i-input id="filecontents"
+                                                v-model="text"
+                                                type="textarea"
+                                                :autosize="{minRows: 4}"
+                                                placeholder="Masukkan teks yang ingin dikompres..."
+                                            />
+                                        </form-item>
+					<i-col span="24">
+   				 	<upload action="https://jsonplaceholder.typicode.com/posts/" ref="upload" :before-upload="readFile" :on-success="clearFiles">
+        				<i-button id="fileSave" icon="ios-cloud-upload-outline" long>Upload files</button>
+    					</upload>
+					</i-col>
+                                        <code style="float:right">Karakter: {{ text.length }}</code>
+                                    </i-form>
+                                </i-col>
+                                <i-col span="12">
+                                    <i-form label-position="top">
+                                            <form-item label="Hasil">
+                                                <i-input
                                                     disabled
-                                                    v-model=textCompressed
-                                                    type=textarea
-                                                    rows=4
-                                                
-                                            form-item
-                                            code style=floatrightKarakter {{ textCompressed.length }}code
-                                        i-form
-                                i-col
-                            row
+                                                    v-model="textCompressed"
+                                                    type="textarea"
+                                                    :rows="4"
+                                                />
+                                            </form-item>
+                                            <code style="float:right">Karakter: {{ textCompressed.length }}</code>
+                                        </i-form>
+                                </i-col>
+                            </row>
 
-                            row style=margin-top30px
-                                i-col span=8 offset=8
-				row gutter=10
-                                        i-col span=12
-                                            i-button type=success loading=loading long @click=onCompress()Compressi-button
-                                        i-col
-                                        i-col span=12
-                                             i-button id=saveBtn type=primary loading=loading2 long @click=onSave() v-if=isCompressed == trueSavei-button
-                                             i-button type=primary long disabled v-elseSavei-button
-                                        i-col
-                                    row
-                                i-col
-                            row
-                        div
-                    card
-                i-content
-                i-footer class=layout-footer-center style=margin-bottom 50px; margin-top30px2018 &copy; All right reserved.i-footer
-            layout
-        div
-    div
+                            <row style="margin-top:30px">
+                                <i-col span="8" offset="8">
+				<row :gutter="10">
+                                        <i-col span="12">
+                                            <i-button type="success" :loading="loading" long @click="onCompress()">Compress</i-button>
+                                        </i-col>
+                                        <i-col span="12">
+                                             <i-button id="saveBtn" type="primary" :loading="loading2" long @click="onSave()" v-if="isCompressed == true">Save</i-button>
+                                             <i-button type="primary" long disabled v-else>Save</i-button>
+                                        </i-col>
+                                    </row>
+                                </i-col>
+                            </row>
+                        </div>
+                    </card>
+                </i-content>
+                <i-footer class="layout-footer-center" style="margin-bottom: 50px; margin-top:30px">2018 &copy; All right reserved.</i-footer>
+            </layout>
+        </div>
+    </div>
 
-  script
-    !CDATA[
+  <script>
+    //<!CDATA[
         Vue.use(iview)
 
         new Vue({
-            el #vueApp,
-            data {
-                text ,
-                textCompressed ,
-                loading false,
-                loading2 false,
-                isCompressed false,
-                file null
+            el: "#vueApp",
+            data: {
+                text: "",
+                textCompressed: "",
+                loading: false,
+                loading2: false,
+                isCompressed: false,
+                file: null
             },
-            methods {
-                onCompress function() {
+            methods: {
+                onCompress: function() {
                     this.loading = true;
                     const str = this.text;
                     
@@ -150,7 +150,7 @@ body
 
                     var output = '';
                     var count = 0;
-                    for (var i = 0; i  str.length; i++) {
+                    for (var i = 0; i < str.length; i++) {
                         count++;
                         if (str[i] != str[i+1]) {
                             output += str[i] + count;
@@ -163,28 +163,29 @@ body
                     this.loading = false
                     this.isCompressed = true
                 },
-		onSave function() {
+		onSave: function() {
 		var output = this.textCompressed;
-  		var blob = new Blob([ output ], {type textplain;charset=utf-8});
-  		saveAs(blob, TextCompressed.txt);
+  		var blob = new Blob([ output ], {type: "text/plain;charset=utf-8"});
+  		saveAs(blob, "TextCompressed.txt");
                 this.$Message.info('File berhasil disimpan...');
                 },
-                readFile function(file) {
+                readFile: function(file) {
                     const vm = this;
                     this.file = file;
 
                     let reader = new FileReader();
                     reader.readAsText(this.file);
 
-                    reader.onload = () = {
+                    reader.onload = () => {
                         vm.text = reader.result
                     }
                 },
-                clearFiles function() {
+                clearFiles: function() {
                     this.$refs.upload.fileList = []
                 }
             }
 	})
-    ]]
-  script
-body
+    //]]>
+  </script>
+</body>
+</html>
